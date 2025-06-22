@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+    --bg-color: #f0f2f5;
+    --player-bg: #ffffff;
+    --text-color: #333;
+    --primary-color: #6a5af9;
+    --secondary-color: #d1c4e9;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --button-bg: #f0f2f5;
+    --button-hover-bg: #e0e2e5;
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --player-bg: #1e1e1e;
+    --text-color: #e0e0e0;
+    --primary-color: #bb86fc;
+    --secondary-color: #3700b3;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --button-bg: #2a2a2a;
+    --button-hover-bg: #3a3a3a;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    transition: background-color 0.3s ease, background 1s ease-in-out;
+    color: var(--text-color);
+}
+
+.player {
+    background: var(--player-bg);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    width: 350px;
+    max-width: 95%;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.main {
+    padding: 25px;
+    text-align: center;
+}
+
+.cover-container {
+    margin-bottom: 20px;
+}
+
+.cover-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    transition: opacity 0.5s ease-in-out, transform 0.3s ease;
+}
+
+.cover-img:hover {
+    transform: scale(1.05);
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 5px 15px var(--shadow-color);
+    }
+    50% {
+        transform: scale(1.02);
+        box-shadow: 0 8px 25px var(--shadow-color);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 5px 15px var(--shadow-color);
+    }
+}
+
+.track-info {
+    margin-bottom: 20px;
+}
+
+.track-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#upload-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+#upload-btn:hover {
+    background: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.progress-container {
+    width: 100%;
+    height: 30px;
+    position: relative;
+    margin: 20px 0;
+    cursor: pointer;
+}
+
+.progress-bar-wrapper {
+    background: var(--button-bg);
+    height: 6px;
+    border-radius: 3px;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.progress-bar {
+    background: var(--primary-color);
+    width: 0%;
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.1s linear;
+}
+
+.waveform {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    opacity: 0.3;
+}
+
+.waveform .bar {
+    width: 3px;
+    height: 5px;
+    background: var(--secondary-color);
+    border-radius: 2px;
+    animation: wave 0.3s linear infinite alternate;
+    animation-play-state: paused;
+}
+
+@keyframes wave {
+    from { height: 5px; }
+    to { height: 25px; }
+}
+
+.time-display {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.control-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    cursor: pointer;
+    margin: 0 15px;
+    padding: 10px;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.control-btn:hover {
+    background: var(--button-hover-bg);
+}
+
+#play-pause-btn {
+    font-size: 1.8rem;
+    background: var(--primary-color);
+    color: white;
+    width: 60px;
+    height: 60px;
+}
+
+#play-pause-btn:hover {
+    background: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#volume-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100px;
+    height: 5px;
+    background: var(--button-bg);
+    border-radius: 5px;
+    outline: none;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+#volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#volume-slider::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* Theme Switcher */
+.theme-switcher {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+#theme-toggle {
+    display: none;
+}
+
+.theme-switcher .slider {
+    display: block;
+    width: 50px;
+    height: 25px;
+    background: var(--button-bg);
+    border-radius: 25px;
+    cursor: pointer;
+    position: relative;
+}
+
+.theme-switcher .slider::before {
+    content: '';
+    display: block;
+    width: 19px;
+    height: 19px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    transition: transform 0.3s ease;
+}
+
+#theme-toggle:checked + .slider::before {
+    transform: translateX(24px);
+    background: var(--primary-color);
+}
+
+
+@media (max-width: 400px) {
+    .player {
+        border-radius: 0;
+        min-height: 100vh;
+    }
+} 
